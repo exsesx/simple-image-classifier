@@ -22,6 +22,9 @@ import time
 
 import numpy as np
 import tensorflow as tf
+import os.path as path
+
+TF_FILES_PATH = path.abspath(path.join(path.dirname(__file__), '..', 'tf_files'))
 
 
 def load_graph(model_file):
@@ -72,8 +75,8 @@ def load_labels(label_file):
 
 def predictFromFile(image):
     file_name = image
-    model_file = "tf_files/retrained_graph.pb"
-    label_file = "tf_files/retrained_labels.txt"
+    model_file = path.join(TF_FILES_PATH, 'retrained_graph.pb')
+    label_file = path.join(TF_FILES_PATH, 'retrained_labels.txt')
     input_height = 224
     input_width = 224
     input_mean = 128

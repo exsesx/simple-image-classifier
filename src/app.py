@@ -1,5 +1,5 @@
-from os import path
 import json
+from os import path, makedirs
 from scripts.label_image import predictFromFile
 from flask import Flask, render_template, request
 from werkzeug.utils import secure_filename
@@ -23,17 +23,15 @@ def root():
 
 @app.route('/classify', methods=['POST'])
 def classify():
-    # check if the post request has the file part
     if 'file' not in request.files:
         raise FileNotFoundError("No file part")
     file = request.files['file']
-    # if user does not select file, browser also
-    # submit a empty part without filename
     if file.filename == '':
         raise Exception('No selected file')
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
         file_path = path.join(app.config['UPLOAD_FOLDER'], filename)
+        makedirs(path.dirname(file_path), exist_ok=True)
         file.save(file_path)
         return json.dumps(predictFromFile(file_path), ensure_ascii=False, separators=(',', ':'))
 

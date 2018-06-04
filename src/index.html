@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+    <link rel="stylesheet" href="static/css/styles.css">
+</head>
+<body>
+<div id="app">
+    <!-- TODO: get image by URL -->
+    <header class="toolbar">
+        Image Classifier
+    </header>
+    <div class="main-section">
+        <form id="image-picker-form" enctype="multipart/form-data">
+            <label for="image-picker">
+                <span class="md-btn md-btn-raised">Select an Image</span>
+            </label>
+            <input id="image-picker" name="file" type="file" accept="image/*">
+            <div class="preview-wrapper">
+                <img id="preview" src="#" alt="">
+            </div>
+        </form>
+    </div>
+    <div id="results"></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+<script src="static/js/index.js"></script>
+</body>
+</html>
